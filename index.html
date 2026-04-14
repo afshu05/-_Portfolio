@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulafsha Shafi Saudagar — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-dim: #0F6E56;
+    --bg: #0e0e0e;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(29,158,117,0.3);
+    --text: #f0ece4;
+    --muted: #8a8880;
+    --accent: #5DCAA5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(14,14,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(29,158,117,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    border: 1px solid var(--teal);
+  }
+  .btn-primary:hover { background: var(--teal-light); border-color: var(--teal-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 380px;
+  }
+  .avatar-ring {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-dim), var(--teal-light));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .hero-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .hero-card p {
+    font-size: 13px;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .stat-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .contact-row {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .contact-row a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .contact-row a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 0.5px;
+    background: var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1.8rem;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border-accent); }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border-radius: 4px;
+    background: rgba(29,158,117,0.12);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 18px;
+  }
+  .skill-card h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(29,158,117,0.1);
+    border: 0.5px solid rgba(29,158,117,0.2);
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .project-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .project-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+  .exp-content h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .exp-content .org {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+  .exp-content p {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* CERTS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .cert-item {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-item:hover { border-color: var(--border-accent); }
+  .cert-dot {
+    width: 8px; height: 8px;
+    min-width: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+  }
+  .cert-item h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .cert-item p {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+  .footer-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .footer-right {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">GS_PORTFOLIO</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">AI &amp; Data Science</div>
+      <h1>Gulafsha<br><em>Shafi</em><br>Saudagar</h1>
+      <p class="hero-desc">B.Tech student in CSE (AI&amp;DS) passionate about data analysis, visualization, and intelligent systems.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="mailto:afshasaudagar13@gmail.com" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="avatar-ring">GS</div>
+        <h3>Gulafsha Shafi Saudagar</h3>
+        <p>// CSE (AI&amp;DS) · Solapur</p>
+        <div class="contact-row">
+          <a href="tel:9075022645">9075022645</a>
+          <a href="mailto:afshasaudagar13@gmail.com">afshasaudagar13@gmail.com</a>
+          <a href="https://linkedin.com/in/gulafsha-saudagar" target="_blank">linkedin.com/in/gulafsha-saudagar</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Internships</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">88%</div>
+            <div class="stat-label">SSC Score</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">// 01 — Technical Skills</div>
+    <h2>What I Work With</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <h4>Programming</h4>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">SQLite</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <h4>Data & Visualization</h4>
+      <div class="skill-tags">
+        <span class="tag">MS Excel</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Pivot Tables</span>
+        <span class="tag">Canva</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <h4>Database</h4>
+      <div class="skill-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">CRUD Ops</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <h4>Cloud & AI</h4>
+      <div class="skill-tags">
+        <span class="tag">AWS Cloud</span>
+        <span class="tag">Generative AI</span>
+        <span class="tag">Java</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤝</div>
+      <h4>Soft Skills</h4>
+      <div class="skill-tags">
+        <span class="tag">Communication</span>
+        <span class="tag">Leadership</span>
+        <span class="tag">Teamwork</span>
+        <span class="tag">Problem-Solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-in">
+    <div class="section-label">// 02 — Projects</div>
+    <h2>Things I've Built</h2>
+  </div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-num">001</div>
+      <h3>Sales Dashboard</h3>
+      <p>Built an interactive dashboard using Pivot Tables, charts, and slicers. Analyzed sales, profit, and region-wise performance to surface actionable business insights.</p>
+      <div class="project-stack">
+        <span class="tag">MS Excel</span>
+        <span class="tag">Pivot Tables</span>
+        <span class="tag">Data Analysis</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">002</div>
+      <h3>Data Visualization Report</h3>
+      <p>Created a Power BI dashboard to visualize data trends and comparisons. Used charts and filters to transform raw data into clear, interactive visual stories.</p>
+      <div class="project-stack">
+        <span class="tag">Power BI</span>
+        <span class="tag">Data Visualization</span>
+        <span class="tag">Dashboard</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">003</div>
+      <h3>Library Management System</h3>
+      <p>Python-based application for book issue, return, and search operations. Implemented database connectivity using SQLite with full CRUD operation support.</p>
+      <div class="project-stack">
+        <span class="tag">Python</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">CRUD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-in">
+    <div class="section-label">// 03 — Experience</div>
+    <h2>Internships &amp; Simulations</h2>
+  </div>
+  <div class="exp-list fade-in">
+    <div class="exp-item">
+      <div class="exp-year">Virtual · Forage</div>
+      <div class="exp-content">
+        <h4>Data Analytics Job Simulation</h4>
+        <div class="org">DELOITTE</div>
+        <p>Completed a virtual data analytics simulation involving data cleaning, in-depth analysis, and visualization. Developed hands-on experience applying analytical thinking to real-world-style business scenarios.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">Virtual · Forage</div>
+      <div class="exp-content">
+        <h4>Data Analytics Simulation</h4>
+        <div class="org">TATA GROUP</div>
+        <p>Completed a data analytics simulation with emphasis on data exploration and dashboard creation. Practiced turning raw datasets into clear, decision-ready visual reports.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="fade-in">
+    <div class="section-label">// 04 — Certifications</div>
+    <h2>Credentials</h2>
+  </div>
+  <div class="cert-grid fade-in">
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>Full Stack Java Development</h4>
+        <p>Fuel — Capgemini Program</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>Java Fundamentals</h4>
+        <p>Oracle</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>AWS Academy — Cloud Foundations</h4>
+        <p>Amazon Web Services</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>Introduction to Generative AI</h4>
+        <p>IBM</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="fade-in">
+    <div class="section-label">// 05 — Education</div>
+    <h2>Academic Background</h2>
+  </div>
+  <div class="exp-list fade-in">
+    <div class="exp-item">
+      <div class="exp-year">2022 – 2026</div>
+      <div class="exp-content">
+        <h4>Bachelor of Technology — CSE (AI &amp; DS)</h4>
+        <div class="org">SHREE SIDDHESHWAR WOMEN'S COLLEGE OF ENGINEERING, SOLAPUR</div>
+        <p>Pursuing specialization in Artificial Intelligence and Data Science.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2022</div>
+      <div class="exp-content">
+        <h4>HSC — 71.50%</h4>
+        <div class="org">B.Q.K GIRLS JUNIOR COLLEGE, SOLAPUR</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2020</div>
+      <div class="exp-content">
+        <h4>SSC — 88.40%</h4>
+        <div class="org">MD. YUNUS URDU MODEL HIGH SCHOOL, SOLAPUR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-label">// 06 — Contact</div>
+    <h2>Let's Connect</h2>
+  </div>
+  <div class="fade-in" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+    <a href="mailto:afshasaudagar13@gmail.com" class="cert-item" style="text-decoration: none; color: inherit;">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>Email</h4>
+        <p>afshasaudagar13@gmail.com</p>
+      </div>
+    </a>
+    <a href="tel:9075022645" class="cert-item" style="text-decoration: none; color: inherit;">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>Phone</h4>
+        <p>9075022645</p>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/gulafsha-saudagar" target="_blank" class="cert-item" style="text-decoration: none; color: inherit;">
+      <div class="cert-dot"></div>
+      <div>
+        <h4>LinkedIn</h4>
+        <p>linkedin.com/in/gulafsha-saudagar</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">Gulafsha Shafi Saudagar</div>
+  <div class="footer-right">© 2025 · Solapur, Maharashtra</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
